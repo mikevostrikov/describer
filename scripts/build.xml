@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!-- 
+     ====================================================================== 
+     16.09.2009                                                        
+
+     iBookstore   
+                   
+     Vostrikov                                                                 
+     ====================================================================== 
+-->
+<project name="Describer" default="jar" basedir="..">
+	<description>
+	</description>
+	
+	<property file="scripts/build.properties" />
+	
+	<property environment="env"/>
+	
+	<target name="usage">
+		<echo>======================================================================</echo>
+		<echo>                           My Describer project                    		</echo>
+		<echo>======================================================================</echo>
+		<echo> This Ant build script is intended for building                       </echo>
+		<echo> Usage: ant [target]                                                  </echo>
+		<echo> Targets are:                                                   		</echo>
+		<echo>clean, init, compile, jar												</echo>
+		<echo>----------------------------------------------------------------------</echo>
+	</target>
+
+	<!-- Cleans project build directory -->
+	<target name="clean" description="">
+		<echo>Cleaning the ${name} project</echo>
+		<delete dir="${build.dir}"></delete>
+	</target>
+
+	<!-- Initialize build -->
+	<target name="init" depends="clean">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.classes}" />
+		<mkdir dir="${build.src}" />
+	</target>
+
+	<!-- Compile project classes -->
+	<target name="compile" description="" depends="init">
+		<echo>Compile project classes</echo>
+		<delete includeemptydirs="true">
+			<fileset dir="${build.classes}" includes="**/*" />
+		</delete>
+		<unjar dest="${build.classes}">
+			<fileset dir="${lib.dir}">
+				<include name="*.jar" />
+			</fileset>
+		</unjar>
+		<copy todir="${build.classes}">
+			<fileset dir="${src.dir}">
+				<include name="**/*.gif" />
+				<include name="**/*.png" />
+				<include name="**/*.xsd" />
+				<include name="**/*.xml" />
+			</fileset>			
+		</copy>
+		<copy todir="${build.src}">
+			<fileset dir="${src.dir}">
+				<include name="**/*" />
+			</fileset>			
+		</copy>
+        <javac destdir="${build.classes}" 
+        	source="${build.source}" 
+        	target="${build.target}" 
+            debug="${compile.debug}"
+        	encoding="${compile.encoding}"
+        	>
+            <src path="${build.src}"/>
+        </javac>
+	</target>
+
+	<!-- Build .jar -->
+	<target name="jar" description="" depends="compile">
+		<echo>Create jar</echo>
+		<jar destfile="${build.jarfile}">
+			<fileset dir="${build.classes}" includes="**/*.*" />
+			<manifest>
+				<attribute name="Main-Class" value="${main.class.name}" />
+			</manifest>			
+		</jar>
+		<echo>Cleaning intermediate resources</echo>
+		<delete dir="${build.classes}"></delete>
+		<delete dir="${build.src}"></delete>		
+	</target>
+
+</project>
+

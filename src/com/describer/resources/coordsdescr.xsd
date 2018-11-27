@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ <xs:element name="coords">
+  <xs:complexType>
+   <xs:sequence>
+     <xs:element maxOccurs="unbounded" minOccurs="0" ref="vertex"/>
+     <xs:element maxOccurs="unbounded" minOccurs="0" ref="edge"/>
+   </xs:sequence>
+  </xs:complexType>
+ </xs:element>
+ <xs:element name="edge">
+  <xs:complexType>
+   <xs:sequence maxOccurs="unbounded" minOccurs="0">
+     <xs:element ref="point"/>
+   </xs:sequence>
+  <xs:attribute name="type1" use="required"/>
+  <xs:attribute name="type2" use="required"/>
+  <xs:attribute name="id1" use="required"/>
+  <xs:attribute name="id2" use="required"/>
+  </xs:complexType>
+ </xs:element>
+ <xs:element name="point">
+  <xs:complexType>
+  <xs:attribute name="x" use="required"/>
+  <xs:attribute name="y" use="required"/>
+  </xs:complexType>
+ </xs:element>
+ <xs:element name="vertex">
+  <xs:complexType>
+  <xs:attribute name="type" use="required"/>
+  <xs:attribute name="id" use="required"/>
+  <xs:attribute name="x" use="required"/>
+  <xs:attribute name="y" use="required"/>
+  <xs:attribute name="w" use="required"/>
+  <xs:attribute name="h" use="required"/>
+  </xs:complexType>
+ </xs:element>
+</xs:schema>

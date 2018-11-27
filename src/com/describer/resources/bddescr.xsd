@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+	<xs:element name='inclusion'>
+		<xs:complexType>
+			<xs:choice minOccurs='0' maxOccurs='unbounded'>
+				<xs:element ref='requisiteLink' />
+				<xs:element ref='entityLink' />
+			</xs:choice>
+			<xs:attribute name='enId' use='required' />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name='entityTree'>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref='entity' minOccurs='0' maxOccurs='unbounded' />
+				<xs:element ref='requisite' minOccurs='0' maxOccurs='unbounded' />
+				<xs:element ref='inclusion' minOccurs='0' maxOccurs='unbounded' />
+				<xs:element ref='key' minOccurs='0' maxOccurs='unbounded' />
+    			<xs:element ref='groupInclusion' minOccurs='0' maxOccurs='unbounded' />
+				<xs:element ref='m_m' minOccurs='0' maxOccurs='unbounded' />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name='key'>
+		<xs:complexType>
+            <xs:sequence>
+               <xs:choice minOccurs="0" maxOccurs="unbounded">
+                  <xs:element ref='requisiteLink'/>
+			      <xs:element ref='entityLink'/>
+               </xs:choice>
+               <xs:element ref='group' minOccurs='0' maxOccurs='unbounded'/>
+			</xs:sequence>
+			<xs:attribute name='keyId' use='required' />
+			<xs:attribute name='enId' use='required' />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name='m_m'>
+		<xs:complexType>
+			<xs:choice minOccurs='0' maxOccurs='unbounded'>
+				<xs:element ref='requisiteLink' />
+				<xs:element ref='entityLink' />
+			</xs:choice>
+			<xs:attribute name='mId' use='required' />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name='name'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name='required'>
+		<xs:complexType />
+	</xs:element>
+	<xs:element name='entity'>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref='name' />
+				<xs:element ref='description' minOccurs='0' />
+			</xs:sequence>
+			<xs:attribute name='enId' use='required' />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name='entityLink'>
+		<xs:complexType>
+			<xs:attribute name='enId' use='required' />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name='requisite'>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref='name' />
+				<xs:element ref='description' minOccurs='0' />
+				<xs:element ref='required' minOccurs='0' />
+			</xs:sequence>
+			<xs:attribute name='reqId' use='required' />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name='requisiteLink'>
+		<xs:complexType>
+			<xs:attribute name='reqId' use='required' />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name='description'>
+		<xs:complexType mixed='true'>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name='group'>
+		<xs:complexType mixed='true'>
+			<xs:sequence>
+				<xs:element ref='name'/>
+			</xs:sequence>
+			<xs:attribute name='num' use='required'/>
+			<xs:attribute name='reqId' use='required'/>
+			<xs:attribute name='default'/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name='groupLink'>
+		<xs:complexType>
+			<xs:attribute name='keyId' use='required'/>
+			<xs:attribute name='num' use='required'/>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name='groupInclusion'>
+    	<xs:complexType>
+    		<xs:sequence>
+   				<xs:element ref='groupLink' minOccurs='0' maxOccurs='unbounded'/>
+    			<xs:element ref='requisiteLink' minOccurs='0'/>
+    		</xs:sequence>
+    		<xs:attribute name='keyId' use='required'/>
+    		<xs:attribute name='num' use='required'/>
+    	</xs:complexType>
+    </xs:element>
+</xs:schema>

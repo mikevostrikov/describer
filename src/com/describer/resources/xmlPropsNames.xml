@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="entityTree">entityTree</entry>
+<entry key="entity">entity</entry>
+<entry key="requisite">requisite</entry>
+<entry key="inclusion">inclusion</entry>
+<entry key="key">key</entry>
+<entry key="m_m">m_m</entry>
+<entry key="enId">enId</entry>
+<entry key="reqId">reqId</entry>
+<entry key="keyId">keyId</entry>
+<entry key="mId">mId</entry>
+<entry key="name">name</entry>
+<entry key="description">description</entry>
+<entry key="required">required</entry>
+<entry key="entityLink">entityLink</entry>
+<entry key="requisiteLink">requisiteLink</entry>
+<entry key="group">group</entry>
+<entry key="num">num</entry>
+<entry key="groupLink">groupLink</entry>
+<entry key="groupInclusion">groupInclusion</entry>
+<entry key="default">default</entry>
+</properties>
